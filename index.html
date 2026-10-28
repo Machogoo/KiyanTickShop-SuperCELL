@@ -148,20 +148,188 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+function ST(cat) {
+    // Скрываем все категории
+    document.getElementById('cat-bs').style.display = 'none';
+    document.getElementById('cat-cr').style.display = 'none';
+    document.getElementById('cat-coc').style.display = 'none';
+    
+    // Снимаем активный класс со всех кнопок
+    document.getElementById('t-bs').classList.remove('on');
+    document.getElementById('t-cr').classList.remove('on');
+    document.getElementById('t-coc').classList.remove('on');
+    
+    // Показываем выбранную категорию и подсвечиваем кнопку
+    document.getElementById('cat-' + cat).style.display = 'grid';
+    document.getElementById('t-' + cat).classList.add('on');
+}
 </script>
-
-<div class="hdr"><div class="hr"><div class="logo">KiyanTick <b>Shop</b></div><div class="cb" onclick="openCart()">🛒<div id="cb">0</div></div></div></div>
+  <div class="hdr"><div class="hr"><div class="logo">KiyanTick <b>Shop</b></div><div class="cb" onclick="openCart()">🛒<div id="cb">0</div></div></div></div>
 <div class="hero"><div class="ht">KiyanTick Shop</div><h1>Выгодный донат</h1><p>Быстро, выгодно и безопасно</p><div class="hb"><span>⚡ Быстрая</span><span>🔒 Безопасно</span><span>💎 Низкие цены</span></div></div>
-<div class="tabs"><button class="tab on" id="t-bs" onclick="ST('bs')">Brawl Stars</button></div>
+<div class="tabs">
+    <button class="tab on" id="t-bs" onclick="ST('bs')">Brawl Stars</button>
+    <button class="tab" id="t-cr" onclick="ST('cr')">Clash Royale</button>
+    <button class="tab" id="t-coc" onclick="ST('coc')">Clash of Clans</button>
+</div>
 <div class="sec">Товары</div>
+
 <div class="prods" id="prods-container">
-  <!-- Карточки товаров (оставь свои товары здесь или добавь новые) -->
-  <div class="pc">
-    <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
-    <div class="pn">Гемы (Пример)</div>
-    <div class="pp">150 ₽</div>
-    <button class="pb">Купить</button>
-  </div>
+    <!-- Товары Brawl Stars -->
+    <div id="cat-bs">
+        <div class="pc">
+            <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
+            <div class="pn">Гемы Brawl Stars</div>
+            <div class="pp">150 ₽</div>
+            <button class="pb">Купить</button>
+        </div>
+    </div>
+
+    <!-- Товары Clash Royale -->
+    <div id="cat-cr" style="display:none;">
+        <div class="pc">
+            <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
+            <div class="pn">Кристаллы Clash Royale</div>
+            <div class="pp">200 ₽</div>
+            <button class="pb">Купить</button>
+        </div>
+    </div>
+
+    <!-- Товары Clash of Clans -->
+    <div id="cat-coc" style="display:none;">
+        <div class="pc">
+            <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
+            <div class="pn">Гемы Clash of Clans</div>
+            <div class="pp">250 ₽</div>
+            <button class="pb">Купить</button>
+        </div>
+    </div>
+</div>
+function ST(cat) {
+    // Скрываем все категории
+    document.getElementById('cat-bs').style.display = 'none';
+    document.getElementById('cat-cr').style.display = 'none';
+    document.getElementById('cat-coc').style.display = 'none';
+    
+    // Снимаем активный класс со всех кнопок
+    document.getElementById('t-bs').classList.remove('on');
+    document.getElementById('t-cr').classList.remove('on');
+    document.getElementById('t-coc').classList.remove('on');
+    
+    // Показываем выбранную категорию и подсвечиваем кнопку
+    document.getElementById('cat-' + cat).style.display = 'grid';
+    document.getElementById('t-' + cat).classList.add('on');
+}
+<div class="prods" id="prods-container">
+    
+    <!-- === BRAWL STARS === -->
+    <div id="cat-bs">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
+    <!-- === CLASH ROYALE === -->
+    <div id="cat-cr" style="display:none;">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
+    <!-- === CLASH OF CLANS === -->
+    <div id="cat-coc" style="display:none;">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+<div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
+</div>
+<div class="prods" id="prods-container">
+    
+    <!-- === BRAWL STARS === -->
+    <div id="cat-bs">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
+    <!-- === CLASH ROYALE === -->
+    <div id="cat-cr" style="display:none;">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
+    <!-- === CLASH OF CLANS === -->
+    <div id="cat-coc" style="display:none;">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+<div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
+</div>
+<div class="prods" id="prods-container">
+    
+    <!-- BRAWL STARS -->
+    <div id="cat-bs">
+        <div class="pc"><div class="pi"><img src="https://web.telegram.org/cff44456-5666-4f6f-8beb-f91dc00f074a" alt="Товар"></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://web.telegram.org/de13f2c7-b3e0-4a8e-a84d-5b0e7e44d908" alt="Товар"></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/ежедневные%20предложения%20160%20и%20180.png" alt="Товар"></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://avatars.mds.yandex.net/i?id=2d9fa4f5bae94d05caa69687bb6b3121_l-5233757-images-thumbs&n=13" alt="Товар"></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://avatars.mds.yandex.net/i?id=3572117fa106b38550ee5d366aaf3e27_l-5219777-images-thumbs&n=13" alt="Товар"></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://digiseller2.mycdn.ink/imgwebp.ashx?idp=6122530&dc=645926400&w=576" alt="Товар"></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://pic.rtbcdn.ru/video/ff/17/ff178dbb71ffd0941c85a3bfaad4c929.jpg" alt="Товар"></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://digiseller.mycdn.ink/imgwebp.ashx?idp=7959194&w=800" alt="Товар"></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/Pro%20Pass%20-%20Кубок.png" alt="Товар"></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
+    </div>
+  <!-- CLASH ROYALE -->
+    <div id="cat-cr" style="display:none;">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+    </div>
+  <!-- CLASH OF CLANS -->
+    <div id="cat-coc" style="display:none;">
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
+        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
+    </div>
+
 </div>
 <div class="ftr">KiyanTick Shop © 2026</div>
 
