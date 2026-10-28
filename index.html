@@ -1,265 +1,139 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KiyanTick Shop</title>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob: https: 'unsafe-inline' 'unsafe-eval'; navigate-to *">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Inter,sans-serif;background:#05030b;color:#fff;min-height:100vh;overflow-x:hidden;position:relative}
-
-/* Атмосферный фон с синим и фиолетовым свечением */
-body::before, body::after {
-  content: "";
-  position: fixed;
-  width: 350px;
-  height: 350px;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: -2;
-  opacity: 0.45;
-  animation: floatGlow 10s ease-in-out infinite alternate;
-}
-body::before {
-  background: #7928ca; /* Фиолетовое свечение */
-  top: -100px;
-  left: -100px;
-}
-body::after {
-  background: #00d2ff; /* Синее свечение */
-  bottom: -100px;
-  right: -100px;
-  animation-delay: -5s;
-}
-
-@keyframes floatGlow {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(40px) scale(1.15); }
-}
-
-/* Движущиеся частицы на заднем плане */
-.particles {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-.particle {
-  position: absolute;
-  background: rgba(0, 240, 255, 0.6);
-  border-radius: 50%;
-  animation: riseParticle 8s linear infinite;
-}
-@keyframes riseParticle {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  50% { opacity: 0.8; }
-  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-}
-
-.hdr{background:rgba(8,5,18,.9);backdrop-filter:blur(16px);padding:13px 16px;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,210,255,.2)}
-.hr{display:flex;align-items:center;gap:10px}
-.logo{font-size:1.2rem;font-weight:900;flex:1;color:#fff}.logo b{color:#00d2ff}
-.cb{position:relative;background:rgba(0,210,255,.12);border:1px solid rgba(0,210,255,.35);border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.3rem;flex-shrink:0}
-#cb{position:absolute;top:-6px;right:-6px;background:#00d2ff;color:#05030b;font-size:.6rem;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;border:2px solid #05030b}
-#cb.on{display:flex}
-.hero{background:linear-gradient(160deg,rgba(15,8,35,.8),rgba(5,15,35,.7) 60%,rgba(5,3,11,.9));padding:20px 16px 22px;border-bottom:1px solid rgba(0,210,255,.15)}
-.ht{color:#00d2ff;font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:7px}
-.hero h1{font-size:1.85rem;font-weight:900;line-height:1.1;margin-bottom:5px}
-.hero p{color:rgba(255,255,255,.45);font-size:.87rem}
-.hb{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
-.hb span{background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.25);color:#00f0ff;font-size:.68rem;font-weight:700;padding:4px 11px;border-radius:999px}
-.tabs{padding:11px 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-family:Inter,sans-serif;font-size:.82rem;font-weight:700;padding:7px 17px;border-radius:999px;cursor:pointer;white-space:nowrap;flex-shrink:0}
-.tab.on{background:linear-gradient(135deg,#00d2ff,#7928ca);border-color:transparent;color:#fff}
-.sec{padding:13px 16px 5px;font-size:.65rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,210,255,.75);display:flex;align-items:center;gap:8px}
-.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(0,210,255,.25),transparent)}
-.prods{padding:0 12px 90px;display:flex;flex-direction:column;gap:9px}
-.pc{background:linear-gradient(160deg,rgba(12,8,28,.95),rgba(5,10,22,.98));border:1px solid rgba(0,210,255,.12);border-radius:17px;padding:18px 15px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:all .2s}
-.pc:hover{border-color:rgba(0,210,255,.45);transform:translateY(-2px);box-shadow:0 0 20px rgba(0,210,255,.15)}
-.pi{width:84px;height:84px;background:rgba(0,210,255,.05);border:1px solid rgba(0,210,255,.15);border-radius:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.pi img{width:76px;height:76px;object-fit:contain}
-.pn{font-size:.9rem;font-weight:800;text-align:center;text-transform:uppercase}
-.pn.nm{text-transform:none}
-.pp{font-size:1.08rem;font-weight:800;background:linear-gradient(90deg,#00f0ff,#7928ca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.pb{background:linear-gradient(135deg,#00d2ff,#0070f3);border:none;color:#fff;font-family:Inter,sans-serif;font-size:.88rem;font-weight:700;padding:10px 0;border-radius:10px;cursor:pointer;width:100%;box-shadow:0 4px 15px rgba(0,210,255,.25)}
-.pb:active{transform:scale(.96)}
-.ftr{padding:16px;text-align:center;color:rgba(255,255,255,.25);font-size:.78rem}
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(8px);z-index:200;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
-.ov.on{opacity:1;pointer-events:all}
-.modal{background:linear-gradient(160deg,#0c081c,#050812);border:1px solid rgba(0,210,255,.2);border-radius:22px 22px 0 0;padding:20px 16px 38px;transform:translateY(60px);transition:transform .3s cubic-bezier(.34,1.56,.64,1);max-height:92vh;overflow-y:auto;position:relative}
-.ov.on .modal{transform:translateY(0)}
-.mh{width:34px;height:4px;background:rgba(255,255,255,.15);border-radius:4px;margin:0 auto 16px}
-.mt{font-size:1.08rem;font-weight:800;text-align:center;margin-bottom:16px}
-.mx{position:absolute;top:15px;right:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.45);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.fl{font-size:.67rem;color:rgba(0,210,255,.75);font-weight:700;margin-bottom:6px;display:block;margin-top:13px;text-transform:uppercase;letter-spacing:.09em}
-.fi{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(0,210,255,.2);border-radius:10px;padding:11px 13px;color:#fff;font-family:Inter,sans-serif;font-size:.9rem;outline:none}
-.fi:focus{border-color:rgba(0,210,255,.6)}.fi::placeholder{color:rgba(255,255,255,.2)}
-.do{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.dd{background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.07);border-radius:12px;padding:11px;cursor:pointer}
-.dd.on{border-color:#00d2ff;background:rgba(0,210,255,.12)}
-.ddt{font-size:.83rem;font-weight:700;margin-bottom:3px}
-.dds{font-size:.68rem;color:rgba(255,255,255,.35)}
-.prow{display:flex;gap:7px;margin-top:5px}
-.pbtn{background:rgba(0,210,255,.12);border:1px solid rgba(0,210,255,.3);color:#00f0ff;font-family:Inter,sans-serif;font-size:.83rem;font-weight:700;padding:11px 14px;border-radius:10px;cursor:pointer;white-space:nowrap}
-.po{background:rgba(255,255,255,.03);border:1.5px solid rgba(0,210,255,.3);border-radius:12px;padding:12px 13px;display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.ce{background:rgba(255,255,255,.03);border-radius:11px;padding:14px;text-align:center;color:rgba(255,255,255,.3);font-size:.87rem;margin-bottom:10px}
-.ci{background:rgba(255,255,255,.03);border:1px solid rgba(0,210,255,.12);border-radius:11px;padding:10px 11px;display:flex;align-items:center;gap:9px;margin-bottom:7px}
-.cii{width:48px;height:48px;background:rgba(0,210,255,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-.cii img{width:42px;height:42px;object-fit:contain}
-.cin{font-size:.84rem;font-weight:700}.cip{font-size:.77rem;font-weight:700;background:linear-gradient(90deg,#00f0ff,#7928ca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.crm{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.18);color:#f87171;width:26px;height:26px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem}
-.pb20{background:rgba(0,210,255,.12);border:1px solid rgba(0,210,255,.25);color:#00f0ff;border-radius:9px;padding:9px;font-size:.8rem;font-weight:700;margin-top:5px}
-.tr{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid rgba(0,210,255,.12);margin-top:3px}
-.tl{color:rgba(255,255,255,.4);font-size:.87rem}.ta{font-size:1.08rem;font-weight:900;background:linear-gradient(90deg,#00f0ff,#7928ca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.bm{width:100%;background:linear-gradient(135deg,#00d2ff,#0070f3);border:none;color:#fff;font-family:Inter,sans-serif;font-size:.93rem;font-weight:800;padding:14px;border-radius:13px;cursor:pointer;margin-top:12px;box-shadow:0 4px 15px rgba(0,210,255,.25)}
-#bb{position:fixed;bottom:0;left:0;right:0;background:rgba(8,5,18,.96);backdrop-filter:blur(14px);border-top:1px solid rgba(0,210,255,.25);padding:10px 16px;z-index:150;display:none}
-.bbr{display:flex;align-items:center;gap:11px}.bbi{flex:1}.bbl{font-size:.68rem;color:rgba(255,255,255,.35)}
-#bbt{font-size:.97rem;font-weight:900;background:linear-gradient(90deg,#00f0ff,#7928ca);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.bbb{background:linear-gradient(135deg,#00d2ff,#0070f3);border:none;color:#fff;font-family:Inter,sans-serif;font-size:.87rem;font-weight:800;padding:11px 20px;border-radius:11px;cursor:pointer;box-shadow:0 4px 15px rgba(0,210,255,.25)}
-#toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%) translateY(30px);background:linear-gradient(135deg,#00d2ff,#7928ca);color:#fff;font-weight:800;font-size:.84rem;padding:10px 20px;border-radius:999px;opacity:0;transition:all .3s;z-index:999;white-space:nowrap;pointer-events:none}
-#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(min-width:560px){.prods,.hdr,.hero,.tabs,.sec,.ftr{max-width:460px;margin-left:auto;margin-right:auto}#bb{max-width:460px;left:50%;transform:translateX(-50%)}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KiyanTick Shop</title>
+    <style>
+        body { background-color: #0d1117; color: #fff; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .particle { position: absolute; background: rgba(255, 255, 255, 0.2); border-radius: 50%; animation: fall linear infinite; }
+        @keyframes fall { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
+        
+        .hdr { text-align: center; margin-bottom: 20px; }
+        .logo { font-size: 24px; font-weight: bold; color: #38bdf8; }
+        .hero { text-align: center; margin-bottom: 25px; }
+        .hero h1 { font-size: 28px; margin: 10px 0; }
+        .hero p { color: #94a3b8; font-size: 14px; }
+        
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        .tab { background: #1e293b; border: none; color: #94a3b8; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .tab.on { background: #38bdf8; color: #0f172a; }
+        
+        .sec { font-size: 18px; font-weight: bold; margin-bottom: 15px; text-align: center; color: #38bdf8; }
+        .prods { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; max-width: 600px; margin: 0 auto; }
+        .pc { background: #1e293b; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #334155; }
+        .pi img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 10px; }
+        .pn { font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #f8fafc; }
+        .pp { font-size: 16px; font-weight: bold; color: #38bdf8; margin-bottom: 12px; }
+        .pb { background: #38bdf8; border: none; color: #0f172a; width: 100%; padding: 8px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .pb:hover { background: #0ea5e9; }
+        .ftr { text-align: center; margin-top: 40px; color: #64748b; font-size: 12px; }
+    </style>
 </head>
 <body>
 
-<!-- Движущиеся частицы фона -->
-<div class="particles" id="particles"></div>
+    <!-- Движущиеся частицы фона -->
+    <div class="particles" id="particles"></div>
 
-<script>
-// Автоматическое создание летающих частиц для игрового эффекта
-window.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('particles');
-  if(container) {
-    for(let i = 0; i < 20; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const size = Math.random() * 4 + 2 + 'px';
-      p.style.width = size;
-      p.style.height = size;
-      p.style.left = Math.random() * 100 + '%';
-      p.style.animationDuration = (Math.random() * 6 + 4) + 's';
-      p.style.animationDelay = (Math.random() * 5) + 's';
-      container.appendChild(p);
-    }
-  }
-});
-<script>
-  function ST(cat) {
-    // Скрываем все категории
-    document.getElementById('cat-bs').style.display = 'none';
-    document.getElementById('cat-cr').style.display = 'none';
-    document.getElementById('cat-coc').style.display = 'none';
-    
-    // Снимаем активный класс со всех кнопок
-    document.getElementById('t-bs').classList.remove('on');
-    document.getElementById('t-cr').classList.remove('on');
-    document.getElementById('t-coc').classList.remove('on');
-    
-    // Показываем выбранную категорию и подсвечиваем кнопку
-    document.getElementById('cat-' + cat).style.display = 'grid';
-    document.getElementById('t-' + cat).classList.add('on');
-}
-</script>
-  <div class="hdr"><div class="hr"><div class="logo">KiyanTick <b>Shop</b></div><div class="cb" onclick="openCart()">🛒<div id="cb">0</div></div></div></div>
-<div class="hero"><div class="ht">KiyanTick Shop</div><h1>Выгодный донат</h1><p>Быстро, выгодно и безопасно</p><div class="hb"><span>⚡ Быстрая</span><span>🔒 Безопасно</span><span>💎 Низкие цены</span></div></div>
-<div class="tabs">
-    <button class="tab on" id="t-bs" onclick="ST('bs')">Brawl Stars</button>
-    <button class="tab" id="t-cr" onclick="ST('cr')">Clash Royale</button>
-    <button class="tab" id="t-coc" onclick="ST('coc')">Clash of Clans</button>
-</div>
-<div class="sec">Товары</div>
+    <div class="hdr">
+        <div class="logo">KiyanTick <b>Shop</b></div>
+    </div>
 
-<div class="prods" id="prods-container">
-    <!-- Товары Brawl Stars -->
-    <div id="cat-bs">
-        <div class="pc">
-            <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
-            <div class="pn">Гемы Brawl Stars</div>
-            <div class="pp">150 ₽</div>
-            <button class="pb">Купить</button>
+    <div class="hero">
+        <h1>Выгодный донат</h1>
+        <p>Быстро, выгодно и безопасно</p>
+    </div>
+
+    <!-- Вкладки игр -->
+    <div class="tabs">
+        <button class="tab on" id="t-bs" onclick="ST('bs')">Brawl Stars</button>
+        <button class="tab" id="t-cr" onclick="ST('cr')">Clash Royale</button>
+        <button class="tab" id="t-coc" onclick="ST('coc')">Clash of Clans</button>
+    </div>
+
+    <div class="sec">Товары</div>
+
+    <div class="prods" id="prods-container">
+        
+        <!-- BRAWL STARS -->
+        <div id="cat-bs">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+<div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
+            </div>
         </div>
-    </div>
 
-    <!-- Товары Clash Royale -->
-    <div id="cat-cr" style="display:none;">
-        <div class="pc">
-            <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
-            <div class="pn">Кристаллы Clash Royale</div>
-            <div class="pp">200 ₽</div>
-            <button class="pb">Купить</button>
+        <!-- CLASH ROYALE -->
+        <div id="cat-cr" style="display:none;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+            </div>
         </div>
-    </div>
 
-    <!-- Товары Clash of Clans -->
-    <div id="cat-coc" style="display:none;">
-        <div class="pc">
-            <div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div>
-            <div class="pn">Гемы Clash of Clans</div>
-            <div class="pp">250 ₽</div>
-            <button class="pb">Купить</button>
+        <!-- CLASH OF CLANS -->
+        <div id="cat-coc" style="display:none;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
+<div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
+            </div>
         </div>
-    </div>
-</div>
-function ST(cat) {
-    // Скрываем все категории
-    document.getElementById('cat-bs').style.display = 'none';
-    document.getElementById('cat-cr').style.display = 'none';
-    document.getElementById('cat-coc').style.display = 'none';
-    
-    // Снимаем активный класс со всех кнопок
-    document.getElementById('t-bs').classList.remove('on');
-    document.getElementById('t-cr').classList.remove('on');
-    document.getElementById('t-coc').classList.remove('on');
-    
-    // Показываем выбранную категорию и подсвечиваем кнопку
-    document.getElementById('cat-' + cat).style.display = 'grid';
-    document.getElementById('t-' + cat).classList.add('on');
-}
-<div class="prods" id="prods-container">
-    
-    <!-- === BRAWL STARS === -->
-    <div id="cat-bs">
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
+
     </div>
 
-    <!-- === CLASH ROYALE === -->
-    <div id="cat-cr" style="display:none;">
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-    </div>
+    <div class="ftr">KiyanTick Shop &copy; 2026</div>
 
-    <!-- === CLASH OF CLANS === -->
-    <div id="cat-coc" style="display:none;">
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
-<div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
-        <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt="Товар"></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
-    </div>
+    <script>
+        // Автоматическое создание летающих частиц
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('particles');
+            if(container) {
+                for(let i = 0; i < 20; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'particle';
+                    const size = Math.random() * 4 + 2 + 'px';
+                    p.style.width = size;
+                    p.style.height = size;
+                    p.style.left = Math.random() * 100 + '%';
+                    p.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                    p.style.animationDelay = (Math.random() * 5) + 's';
+                    container.appendChild(p);
+                }
+            }
+        });
 
-</div>
-
-<div class="ftr">KiyanTick Shop © 2026</div>
-
+        // Функция переключения вкладок
+        function ST(cat) {
+            document.getElementById('cat-bs').style.display = 'none';
+            document.getElementById('cat-cr').style.display = 'none';
+            document.getElementById('cat-coc').style.display = 'none';
+            
+            document.getElementById('t-bs').classList.remove('on');
+            document.getElementById('t-cr').classList.remove('on');
+            document.getElementById('t-coc').classList.remove('on');
+            
+            document.getElementById('cat-' + cat).style.display = 'block';
+            document.getElementById('t-' + cat).classList.add('on');
+        }
+    </script>
 </body>
 </html>
+
