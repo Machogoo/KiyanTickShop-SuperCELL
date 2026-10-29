@@ -1,3 +1,31 @@
+const PRODUCTS = {
+  "33 Гема": 100,
+  "88 Гемов": 150,
+  "187 Гемов": 290,
+  "396 Гемов": 400,
+  "1045 Гемов": 800,
+  "2200 Гемов": 1350,
+  "Brawl Pass": 300,
+  "Brawl Pass Plus": 400,
+  "PRO Pass": 600,
+
+  "500 Кристаллов": 150,
+  "1 200 Кристаллов": 250,
+  "2 500 Кристаллов": 350,
+  "6 500 Кристаллов": 750,
+  "14 000 Кристаллов": 1350,
+  "28 000 Кристаллов": 1950,
+  "Diamond Pass": 400,
+
+  "3 700 Гемов": 400,
+  "6 500 Гемов": 750,
+  "9 000 Гемов": 950,
+  "10 000 Гемов": 1000,
+  "14 000 Гемов": 1250,
+  "28 000 Гемов": 1900,
+  "GOLD PASS": 200
+};
+
 export async function onRequestGet() {
   return Response.json({
     ok: true,
@@ -7,26 +35,52 @@ export async function onRequestGet() {
 
 export async function onRequestPost({ request, env }) {
   try {
-    const { amount, description } = await request.json();
+    const body = await request.json();
 
-    if (
-      typeof amount !== "number" ||
-      !Number.isFinite(amount) ||
-      amount <= 0 ||
-      amount > 100000
-    ) {
+    if (!Array.isArray(body.items) || body.items.length === 0) {
       return Response.json(
-        { ok: false, error: "Invalid amount" },
+        { ok: false, error: "Корзина пуста" },
         { status: 400 }
       );
     }
 
-    const merchantId = env.PLATEGA_MERCHANT_ID;
-    const secret = env.PLATEGA_SECRET;
-
-    if (!merchantId || !secret) {
+    if (body.items.length > 30) {
       return Response.json(
-        { ok: false, error: "Payment settings are missing" },
+        { ok: false, error: "Слишком много товаров" },
+        { status: 400 }
+      );
+    }
+
+    let amount = 0;
+
+    for (const item of body.items) {
+      if (
+        !item ||
+        typeof item.name !== "string" ||
+        !Number.isSafeInteger(item.quantity) ||
+        item.quantity < 1 ||
+        item.quantity > 20 ||
+        !Object.hasOwn(PRODUCTS, item.name)
+      ) {
+        return Response.json(
+          { ok: false, error: "Некорректный товар или количество" },
+          { status: 400 }
+        );
+      }
+
+      amount += PRODUCTS[item.name] * item.quantity;
+    }
+
+    if (!Number.isSafeInteger(amount) || amount <= 0) {
+      return Response.json(
+        { ok: false, error: "Некорректная сумма" },
+        { status: 400 }
+      );
+    }
+
+    if (!env.PLATEGA_MERCHANT_ID || !env.PLATEGA_SECRET) {
+      return Response.json(
+        { ok: false, error: "Настройки оплаты не найдены" },
         { status: 500 }
       );
     }
@@ -37,15 +91,15 @@ export async function onRequestPost({ request, env }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-MerchantId": merchantId,
-          "X-Secret": secret
+          "X-MerchantId": env.PLATEGA_MERCHANT_ID,
+          "X-Secret": env.PLATEGA_SECRET
         },
         body: JSON.stringify({
           paymentDetails: {
             amount,
             currency: "RUB"
           },
-          description: String(description || "Оплата заказа").slice(0, 200),
+          description: "Заказ KiyanTick Shop",
           return: "https://example.com/success",
           failedUrl: "https://example.com/fail"
         })
@@ -54,9 +108,13 @@ export async function onRequestPost({ request, env }) {
 
     const data = await paymentResponse.json();
 
-    if (!paymentResponse.ok) {
+    if (
+      !paymentResponse.ok ||
+      typeof data.url !== "string" ||
+      !data.url.startsWith("https://")
+    ) {
       return Response.json(
-        { ok: false, error: "Payment provider rejected the request" },
+        { ok: false, error: "Не удалось создать платёж" },
         { status: 502 }
       );
     }
@@ -68,7 +126,7 @@ export async function onRequestPost({ request, env }) {
     });
   } catch {
     return Response.json(
-      { ok: false, error: "Could not create payment" },
+      { ok: false, error: "Ошибка обработки заказа" },
       { status: 500 }
     );
   }
