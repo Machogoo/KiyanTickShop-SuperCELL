@@ -256,18 +256,33 @@
 }
 
         // Автопривязка кнопок "Купить"
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.pc').forEach(card => {
-                let nameEl = card.querySelector('.pn');
-                let priceEl = card.querySelector('.pp');
-                let btn = card.querySelector('.pb');
-                if(nameEl && priceEl && btn) {
-                    let name = nameEl.innerText;
-                    let price = parseInt(priceEl.innerText.replace(/[^0-9]/g, '')) || 0;
-                    btn.onclick = () => addToCart(name, price);
-                }
-            });
-            renderCart();
+function bindBuyButtons() {
+    document.querySelectorAll('.pc').forEach(card => {
+        const nameEl = card.querySelector('.pn');
+        const priceEl = card.querySelector('.pp');
+        const btn = card.querySelector('.pb');
+
+        if (!nameEl  !priceEl  !btn) return;
+
+        const name = nameEl.textContent.trim();
+        const price = parseInt(
+            priceEl.textContent.replace(/[^0-9]/g, ''),
+            10
+        ) || 0;
+
+        btn.onclick = function () {
+            addToCart(name, price);
+        };
+    });
+
+    renderCart();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindBuyButtons);
+} else {
+    bindBuyButtons();
+}
         });
     </script>
 </body>
