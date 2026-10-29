@@ -134,5 +134,98 @@
             document.getElementById('t-' + cat).classList.add('on');
         }
     </script>
+<!-- Модальное окно корзины -->
+<div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:#1e293b; padding:20px; border-radius:12px; width:90%; max-width:400px; color:#fff; border:1px solid #334155; max-height:80vh; overflow-y:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3 style="margin:0; color:#38bdf8;">Ваша корзина</h3>
+            <button onclick="closeCart()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">&times;</button>
+        </div>
+        <div id="cart-items" style="margin-bottom:15px;"></div>
+        <div style="border-top:1px solid #334155; padding-top:10px; margin-bottom:15px; display:flex; justify-content:space-between; font-weight:bold;">
+            <span>Итого:</span>
+            <span id="cart-total" style="color:#38bdf8;">0 ₽</span>
+        </div>
+        <button onclick="checkout()" style="background:#38bdf8; border:none; color:#0f172a; width:100%; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer;">Оформить заказ</button>
+    </div>
+</div>
+</script>// Логика корзины
+let cart = JSON.parse(localStorage.getItem('kiyan_cart')) || [];
+
+function openCart() {
+    document.getElementById('cart-modal').style.display = 'flex';
+    renderCart();
+}
+
+function closeCart() {
+    document.getElementById('cart-modal').style.display = 'none';
+}
+
+function addToCart(name, price) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name: name, price: price, quantity: 1 });
+    }
+    saveAndRender();
+    alert('Товар добавлен в корзину!');
+}
+
+function changeQty(index, delta) {
+    cart[index].quantity += delta;
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+    }
+    saveAndRender();
+}
+
+function saveAndRender() {
+    localStorage.setItem('kiyan_cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function renderCart() {
+    let container = document.getElementById('cart-items');
+    let totalEl = document.getElementById('cart-total');
+    if(!container || !totalEl) return;
+    container.innerHTML = '';
+    
+    if (cart.length === 0) {
+        container.innerHTML = '<p style="color:#94a3b8; text-align:center;">Корзина пуста</p>';
+        totalEl.innerText = '0 ₽';
+        return;
+    }
+
+    let total = 0;
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        container.innerHTML += 
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; background:#0f172a; padding:8px; border-radius:8px;">
+                <div>
+                    <div style="font-size:13px; font-weight:bold;">${item.name}</div>
+                    <div style="font-size:12px; color:#38bdf8;">${item.price} ₽ × ${item.quantity}</div>
+                </div>
+                <div style="display:flex; gap:5px; align-items:center;">
+                    <button onclick="changeQty(${index}, -1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">-</button>
+                    <span style="font-size:14px; width:20px; text-align:center;">${item.quantity}</span>
+                    <button onclick="changeQty(${index}, 1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">+</button>
+                </div>
+            </div>
+        ;
+    });
+    totalEl.innerText = total + ' ₽';
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert('Корзина пуста!');
+        return;
+    }
+    alert('Переходим к оформлению заказа!');
+}
+</script>
 </body>
 </html>
