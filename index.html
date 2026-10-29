@@ -152,92 +152,81 @@
 </div>
 
 <script>
-    // Логика корзины (Этап 1)
     let cart = JSON.parse(localStorage.getItem('kiyan_cart')) || [];
 
-    // Автоматическая привязка к кнопкам "Купить" для всех существующих карточек
-    window.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.pc').forEach(card => {
-            let nameEl = card.querySelector('.pn');
-            let priceEl = card.querySelector('.pp');
-            let btn = card.querySelector('.pb');
-            if(nameEl && priceEl && btn) {
-                let name = nameEl.innerText;
-                let price = parseInt(priceEl.innerText.replace(/[^0-9]/g, '')) || 0;
-                btn.onclick = () => addToCart(name, price);
-            }
-        });
-        renderCart();
-    });
+function openCart() {
+    document.getElementById('cart-modal').style.display = 'flex';
+    renderCart();
+}
 
-    function openCart() {
-        document.getElementById('cart-modal').style.display = 'flex';
-        renderCart();
+function closeCart() {
+    document.getElementById('cart-modal').style.display = 'none';
+}
+
+function addToCart(name, price) {
+    let existing = cart.find(item => item.name === name);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name: name, price: price, quantity: 1 });
     }
-    function closeCart() {
-        document.getElementById('cart-modal').style.display = 'none';
+    saveAndRender();
+    alert('Товар добавлен в корзину!');
+}
+
+function changeQty(index, delta) {
+    cart[index].quantity += delta;
+    if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
     }
-    function addToCart(name, price) {
-        let existing = cart.find(item => item.name === name);
-        if (existing) {
-            existing.quantity += 1;
-        } else {
-            cart.push({ name: name, price: price, quantity: 1 });
-        }
-        saveAndRender();
-        alert('Товар добавлен в корзину!');
+    saveAndRender();
+}
+
+function saveAndRender() {
+    localStorage.setItem('kiyan_cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function renderCart() {
+    let container = document.getElementById('cart-items');
+    let totalEl = document.getElementById('cart-total');
+    if(!container || !totalEl) return;
+    container.innerHTML = '';
+    
+    if (cart.length === 0) {
+        container.innerHTML = '<p style="color:#94a3b8; text-align:center;">Корзина пуста</p>';
+        totalEl.innerText = '0 ₽';
+        return;
     }
-    function changeQty(index, delta) {
-        cart[index].quantity += delta;
-        if (cart[index].quantity <= 0) {
-            cart.splice(index, 1);
-        }
-        saveAndRender();
-    }
-    function saveAndRender() {
-        localStorage.setItem('kiyan_cart', JSON.stringify(cart));
-        renderCart();
-    }
-    function renderCart() {
-        let container = document.getElementById('cart-items');
-        let totalEl = document.getElementById('cart-total');
-        if(!container || !totalEl) return;
-        container.innerHTML = '';
+
+    let total = 0;
+    cart.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
         
-        if (cart.length === 0) {
-            container.innerHTML = '<p style="color:#94a3b8; text-align:center;">Корзина пуста</p>';
-            totalEl.innerText = '0 ₽';
-            return;
-        }
-
-        let total = 0;
-        cart.forEach((item, index) => {
-            let itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            
-            container.innerHTML += `
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; background:#0f172a; padding:8px; border-radius:8px;">
-                    <div>
-                        <div style="font-size:13px; font-weight:bold;">${item.name}</div>
-<div style="font-size:12px; color:#38bdf8;">${item.price} ₽ × ${item.quantity}</div>
-                    </div>
-                    <div style="display:flex; gap:5px; align-items:center;">
-                        <button onclick="changeQty(${index}, -1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">-</button>
-                        <span style="font-size:14px; width:20px; text-align:center;">${item.quantity}</span>
-                        <button onclick="changeQty(${index}, 1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">+</button>
-                    </div>
+        container.innerHTML += 
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; background:#0f172a; padding:8px; border-radius:8px;">
+                <div>
+                    <div style="font-size:13px; font-weight:bold;">${item.name}</div>
+                    <div style="font-size:12px; color:#38bdf8;">${item.price} ₽ × ${item.quantity}</div>
                 </div>
-            `;
-        });
-        totalEl.innerText = total + ' ₽';
+                <div style="display:flex; gap:5px; align-items:center;">
+                    <button onclick="changeQty(${index}, -1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">-</button>
+                    <span style="font-size:14px; width:20px; text-align:center;">${item.quantity}</span>
+                    <button onclick="changeQty(${index}, 1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">+</button>
+                </div>
+            </div>
+    });
+    totalEl.innerText = total + ' ₽';
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert('Корзина пуста!');
+        return;
     }
-    function checkout() {
-        if (cart.length === 0) {
-            alert('Корзина пуста!');
-            return;
-        }
-        alert('Переходим к оформлению заказа! (Скоро перейдем к Этапу 2)');
-    }
+    alert('Переходим к оформлению заказа!');
+}
    </script>
 </body>
 </html>
