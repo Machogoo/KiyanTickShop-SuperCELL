@@ -222,13 +222,38 @@
             totalEl.innerText = total + ' ₽';
         }
 
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Корзина пуста!');
-                return;
-            }
-            alert('Переходим к оформлению заказа!');
+        async function checkout() {
+    if (cart.length === 0) {
+        alert('Корзина пуста!');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/create-payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                items: cart.map(item => ({
+                    name: item.name,
+                    quantity: item.quantity || 1
+                }))
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok  !data.ok  !data.paymentUrl) {
+            throw new Error(data.error || 'Не удалось создать платёж');
         }
+
+        window.location.href = data.paymentUrl;
+    } catch (error) {
+        console.error(error);
+        alert('Не удалось создать платёж. Попробуй позже.');
+    }
+}
 
         // Автопривязка кнопок "Купить"
         document.addEventListener('DOMContentLoaded', () => {
