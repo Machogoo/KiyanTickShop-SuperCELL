@@ -244,7 +244,7 @@
 
         const data = await response.json();
 
-        if (!response.ok  !data.ok  !data.paymentUrl) {
+        if (!response.ok || !data.ok || !data.paymentUrl) {
             throw new Error(data.error || 'Не удалось создать платёж');
         }
 
