@@ -109,15 +109,23 @@ export async function onRequestPost({ request, env }) {
     const data = await paymentResponse.json();
 
     if (
-      !paymentResponse.ok ||
-      typeof data.url !== "string" ||
-      !data.url.startsWith("https://")
-    ) {
-      return Response.json(
-        { ok: false, error: "Не удалось создать платёж" },
-        { status: 502 }
-      );
-    }
+  !paymentResponse.ok ||
+  typeof data.url !== "string" ||
+  !data.url.startsWith("https://")
+) {
+  return Response.json(
+    {
+      ok: false,
+      error: "Platega отклонила запрос",
+      providerStatus: paymentResponse.status,
+      providerCode: data.code || null,
+      providerMessage: data.message || null,
+      traceId: data.traceId || null,
+      hasPaymentUrl: typeof data.url === "string"
+    },
+    { status: 502 }
+  );
+}
 
     return Response.json({
       ok: true,
