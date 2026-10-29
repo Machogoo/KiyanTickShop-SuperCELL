@@ -100,8 +100,9 @@ export async function onRequestPost({ request, env }) {
             currency: "RUB"
           },
           description: "Заказ KiyanTick Shop",
-          return: "https://example.com/success",
-          failedUrl: "https://example.com/fail"
+          return: "https://kiyantickshop-supercell-test.pages.dev/?payment=success",
+          failedUrl: "https://kiyantickshop-supercell-test.pages.dev/?payment=failed"
+
         })
       }
     );
