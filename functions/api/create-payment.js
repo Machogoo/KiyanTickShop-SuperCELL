@@ -78,12 +78,14 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
-    if (!env.PLATEGA_MERCHANT_ID || !env.PLATEGA_SECRET) {
-      return Response.json(
-        { ok: false, error: "Настройки оплаты не найдены" },
-        { status: 500 }
-      );
-    }
+   if (!env.PLATEGA_MERCHANT_ID || !env.PLATEGA_SECRET) {
+  return Response.json({
+    ok: false,
+    hasMerchantId: Boolean(env.PLATEGA_MERCHANT_ID),
+    hasSecret: Boolean(env.PLATEGA_SECRET),
+    error: "Не найдены переменные оплаты"
+  }, { status: 500 });
+}
 
     const paymentResponse = await fetch(
       "https://app.platega.io/v2/transaction/process",
