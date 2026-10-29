@@ -262,7 +262,7 @@ function bindBuyButtons() {
         const priceEl = card.querySelector('.pp');
         const btn = card.querySelector('.pb');
 
-        if (!nameEl  !priceEl  !btn) return;
+        if (!nameEl || !priceEl || !btn) return;
 
         const name = nameEl.textContent.trim();
         const price = parseInt(
