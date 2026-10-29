@@ -102,7 +102,21 @@
     </div>
 
     <div class="ftr">KiyanTick Shop &copy; 2026</div>
-
+<!-- Модальное окно корзины -->
+<div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+    <div style="background:#1e293b; padding:20px; border-radius:12px; width:90%; max-width:400px; color:#fff; border:1px solid #334155; max-height:80vh; overflow-y:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3 style="margin:0; color:#38bdf8;">Ваша корзина</h3>
+            <button onclick="closeCart()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">&times;</button>
+        </div>
+        <div id="cart-items" style="margin-bottom:15px;"></div>
+        <div style="border-top:1px solid #334155; padding-top:10px; margin-bottom:15px; display:flex; justify-content:space-between; font-weight:bold;">
+            <span>Итого:</span>
+            <span id="cart-total" style="color:#38bdf8;">0 ₽</span>
+        </div>
+        <button onclick="checkout()" style="background:#38bdf8; border:none; color:#0f172a; width:100%; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer;">Оформить заказ</button>
+    </div>
+</div>
     <script>
         // Автоматическое создание летающих частиц
         window.addEventListener('DOMContentLoaded', () => {
@@ -135,21 +149,7 @@
             document.getElementById('cat-' + cat).style.display = 'block';
             document.getElementById('t-' + cat).classList.add('on');
         }
- <!-- Модальное окно корзины -->
-<div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
-    <div style="background:#1e293b; padding:20px; border-radius:12px; width:90%; max-width:400px; color:#fff; border:1px solid #334155; max-height:80vh; overflow-y:auto;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <h3 style="margin:0; color:#38bdf8;">Ваша корзина</h3>
-            <button onclick="closeCart()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">&times;</button>
-        </div>
-        <div id="cart-items" style="margin-bottom:15px;"></div>
-        <div style="border-top:1px solid #334155; padding-top:10px; margin-bottom:15px; display:flex; justify-content:space-between; font-weight:bold;">
-            <span>Итого:</span>
-            <span id="cart-total" style="color:#38bdf8;">0 ₽</span>
-        </div>
-        <button onclick="checkout()" style="background:#38bdf8; border:none; color:#0f172a; width:100%; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer;">Оформить заказ</button>
-    </div>
-</div>
+ 
 
 <script>
     let cart = JSON.parse(localStorage.getItem('kiyan_cart')) || [];
