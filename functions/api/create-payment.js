@@ -26,10 +26,11 @@ const PRODUCTS = {
   "GOLD PASS": 200
 };
 
-export async function onRequestGet() {
+export async function onRequestGet({ env }) {
   return Response.json({
     ok: true,
-    message: "Payment API is running"
+    hasMerchantId: Boolean(env.PLATEGA_MERCHANT_ID),
+    hasSecret: Boolean(env.PLATEGA_SECRET)
   });
 }
 
