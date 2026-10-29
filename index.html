@@ -227,7 +227,19 @@
                 alert('Корзина пуста!');
                 return;
             }
-            alert('Переходим к оформлению заказа!');
+
+            // Считаем общую сумму заказа
+            let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Ссылка на оплату Platega.io (замени основную ссылку на ту, которую дал владелец/платежка)
+            let plategaBaseUrl = "https://platega.io/pay/..."; // Сюда вставляется ссылка на оплату или кассу
+
+            // Формируем итоговую ссылку с суммой
+            let paymentUrl = ${plategaBaseUrl}?amount=${total};
+
+            // Очищаем корзину и перенаправляем на оплату
+            localStorage.removeItem('kiyan_cart');
+            window.location.href = paymentUrl;
         }
 
         // Автопривязка кнопок "Купить"
