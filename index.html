@@ -10,10 +10,8 @@
         .particle { position: absolute; background: rgba(255, 255, 255, 0.2); border-radius: 50%; animation: fall linear infinite; }
         @keyframes fall { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
         
-        .hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .hdr { text-align: center; margin-bottom: 20px; }
         .logo { font-size: 24px; font-weight: bold; color: #38bdf8; }
-        .cb { background: #1e293b; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 18px; display: inline-block; }
-        
         .hero { text-align: center; margin-bottom: 25px; }
         .hero h1 { font-size: 28px; margin: 10px 0; }
         .hero p { color: #94a3b8; font-size: 14px; }
@@ -23,9 +21,7 @@
         .tab.on { background: #38bdf8; color: #0f172a; }
         
         .sec { font-size: 18px; font-weight: bold; margin-bottom: 15px; text-align: center; color: #38bdf8; }
-        .prods { max-width: 600px; margin: 0 auto; }
-        .grid-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        
+        .prods { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; max-width: 600px; margin: 0 auto; }
         .pc { background: #1e293b; border-radius: 12px; padding: 15px; text-align: center; border: 1px solid #334155; }
         .pi img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 10px; }
         .pn { font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #f8fafc; }
@@ -37,12 +33,11 @@
 </head>
 <body>
 
-    <!-- Фоновые частицы -->
+    <!-- Движущиеся частицы фона -->
     <div class="particles" id="particles"></div>
 
     <div class="hdr">
         <div class="logo">KiyanTick <b>Shop</b></div>
-        <div class="cb" onclick="openCart()">🛒</div>
     </div>
 
     <div class="hero">
@@ -63,42 +58,42 @@
         
         <!-- BRAWL STARS -->
         <div id="cat-bs">
-            <div class="grid-box">
-                <div class="pc"><div class="pi"><img src="https://static-sg-eo.buffbuff.com/pics/ddlaacd2_unw018d6P91.webp" alt=""></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/ежедневные20предложений20дикий20базар" alt=""></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/ежедневные20предложений20дикий20базар" alt=""></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
-<div class="pc"><div class="pi"><img src="https://assets.ig-items.com/files/bnSvkstA6vnekusA7tWeeaUvEd1t0E1P" alt=""></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://static-sg-eo.buffbuff.com/pics/ddlaacd2_unw018d6P91.webp" alt=""></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://production-gameflipusercontent.fingershock.com/us-east-1:4d4e11ae-2593-42e7-b6a9-ce794da9fbfa/231bca35-e51c-4389-9a25-c6bf2e20b39e/6987aa85-b9e7-495c-9c04-f52fb8f3a38b" alt=""></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://brawl-star.net/wp-content/uploads/2024/10/brawlpass.png" alt=""></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://game-assets.store.supercell.com/brawlstars/07cald66-f770-4734-8041-e1a53ae660c6/web_shop_item_image_ru.png" alt=""></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/Pro%20Pass%2020%20K20y.png" alt=""></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                <div class="pc"><div class="pi"><img src="https://static-sg-eo.buffbuff.com/pics/dd1aacd2_x6skjAWWjCH.webp?imageMogr2/thumbnail/512x512" alt="Товар"></div><div class="pn">33 Гема</div><div class="pp">100 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/ежедневные%20предложения%20160%20и%20180.png" alt="Товар"></div><div class="pn">88 Гемов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/ежедневные%20предложения%20160%20и%20180.png" alt="Товар"></div><div class="pn">187 Гемов</div><div class="pp">290 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://assets.ig-items.com/files/bnNSWkitA6vnekuiwNTmH6NozH5dJ5Hj.png" alt="Товар"></div><div class="pn">396 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+<div class="pc"><div class="pi"><img src="https://static-sg-eo.buffbuff.com/pics/dd1aacd2_Unw01BD6P9J.webp?imageMogr2/thumbnail/512x512" alt="Товар"></div><div class="pn">1045 Гемов</div><div class="pp">800 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://production-gameflipusercontent.fingershock.com/us-east-1:0d34c12d-6252-4654-abf1-9a40aed4195e/204cfd2c-4286-4e4d-adc7-b043850d1fa8/bd8421a3-a095-4124-bcc1-30d794262f4c/640x640.webp" alt="Товар"></div><div class="pn">2200 Гемов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://brawl-star.net/wp-content/uploads/2024/10/brawlpass.png" alt="Товар"></div><div class="pn">Brawl Pass</div><div class="pp">300 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://game-assets.store.supercell.com/brawlstars/b7ca1d6d-f770-4714-8dfc-e3a33c339769.png" alt="Товар"></div><div class="pn">Brawl Pass Plus</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://hornybox.ru/api/assets/Pro%20Pass%20-%20Кубок.png" alt="Товар"></div><div class="pn">PRO Pass</div><div class="pp">600 ₽</div><button class="pb">Купить</button></div>
             </div>
         </div>
 
         <!-- CLASH ROYALE -->
         <div id="cat-cr" style="display:none;">
-            <div class="grid-box">
-                <div class="pc"><div class="pi"><img src="https://store.supercell.com/images/clashroyale/210c4bf7513840e2d75751364e7fe842/web_shop_item_image_ru.png" alt=""></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://store.supercell.com/images/clashroyale/d9d40e21a8d078e58cb39d2e7b1a206b/web_shop_item_image_ru.png" alt=""></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://10.wp.com/www.alphr.com/wp-content/uploads/2023/06/gem.png?resize=738%2C492&ssl=1" alt=""></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://store.supercell.com/images/clashroyale/c4660ec4c35002bdf5599026cb1cdccb/web_shop_item_image_ru.png" alt=""></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://cdn.payga.me/offers/2025/6/8/284464/image-edfa4e1-gmo273roro/image-edfa4e1-gmo273roro/image-edfa4e1-gmo273roro.webp" alt=""></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://skycoach.gg/storage/uploads/products/clash-royale-gems1741-xnte.png" alt=""></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://armadaboost.com/storage/product/images/buy-clash-royale-pass-royale.webp" alt=""></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                <div class="pc"><div class="pi"><img src="https://store.supercell.com/images/clashroyale/11d6c0c71a0d003ecfb23753b94154c7.png" alt="Товар"></div><div class="pn">500 Кристаллов</div><div class="pp">150 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://store.supercell.com/images/clashroyale/d94bbe2102d77b7e39347d011da86b8f.png" alt="Товар"></div><div class="pn">1 200 Кристаллов</div><div class="pp">250 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://i0.wp.com/www.alphr.com/wp-content/uploads/2021/08/gems.png?resize=257,283&ssl=1" alt="Товар"></div><div class="pn">2 500 Кристаллов</div><div class="pp">350 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://store.supercell.com/images/clashroyale/2a9094abf4c67b13c9c5230667a5bb78.png" alt="Товар"></div><div class="pn">6 500 Кристаллов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://cdn.payga.me/offers/2025/6/8/284464/320989/fe81bfcd9f0e32af590df11f75377dbd.preview.png" alt="Товар"></div><div class="pn">14 000 Кристаллов</div><div class="pp">1350 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://skycoach.gg/storage/uploads/products/clash-royale-gems1752827282_picture_item_small.png" alt="Товар"></div><div class="pn">28 000 Кристаллов</div><div class="pp">1950 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://armadaboost.com/storage/product/images/buy-clash-royale-pass-armadaboost.png" alt="Товар"></div><div class="pn">Diamond Pass</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
             </div>
         </div>
 
         <!-- CLASH OF CLANS -->
         <div id="cat-coc" style="display:none;">
-            <div class="grid-box">
-<div class="pc"><div class="pi"><img src="https://nolife.id/images/produk/clash_of_clans/gems-1817-xnte.png" alt=""></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/ddlaacd2_unw018d6P91.webp" alt=""></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/ddlaacd2_unw018d6P91.webp" alt=""></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/ddlaacd2_8S2UyWQvG*.webp" alt=""></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/ddlaacd2_unw018d6P91.webp" alt=""></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://martsbd.com/wp-content/uploads/2023/04/untitled-design.png" alt=""></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
-                <div class="pc"><div class="pi"><img src="https://via.placeholder.com/76" alt=""></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                <div class="pc"><div class="pi"><img src="https://nolife.id/images/produk/clash_of_clans/gems-1017-xnte.png" alt="Товар"></div><div class="pn">3 700 Гемов</div><div class="pp">400 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://nolife.id/images/produk/clash_of_clans/gems-1017-xnte.png" alt="Товар"></div><div class="pn">6 500 Гемов</div><div class="pp">750 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/dd1aacd2_7nt3NdnImRO.webp?imageMogr2/thumbnail/512x512" alt="Товар"></div><div class="pn">9 000 Гемов</div><div class="pp">950 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/dd1aacd2_7nt3NdnImRO.webp?imageMogr2/thumbnail/512x512" alt="Товар"></div><div class="pn">10 000 Гемов</div><div class="pp">1000 ₽</div><button class="pb">Купить</button></div>
+<div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/dd1aacd2_8S2UywQVgM-.webp?imageMogr2/thumbnail/512x512" alt="Товар"></div><div class="pn">14 000 Гемов</div><div class="pp">1250 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://buff-static-h-eo.buffbuffstatic.com/wupload/pics/dd1aacd2_8S2UywQVgM-.webp?imageMogr2/thumbnail/512x512" alt="Товар"></div><div class="pn">28 000 Гемов</div><div class="pp">1900 ₽</div><button class="pb">Купить</button></div>
+                <div class="pc"><div class="pi"><img src="https://martsbd.com/wp-content/uploads/2023/04/Untitled-design.png" alt="Товар"></div><div class="pn">GOLD PASS</div><div class="pp">200 ₽</div><button class="pb">Купить</button></div>
             </div>
         </div>
 
@@ -106,116 +101,8 @@
 
     <div class="ftr">KiyanTick Shop &copy; 2026</div>
 
-    <!-- Модальное окно корзины (чистый HTML) -->
-    <div id="cart-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
-        <div style="background:#1e293b; padding:20px; border-radius:12px; width:90%; max-width:400px; color:#fff; border:1px solid #334155; max-height:80vh; overflow-y:auto;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-                <h3 style="margin:0; color:#38bdf8;">Ваша корзина</h3>
-                <button onclick="closeCart()" style="background:none; border:none; color:#94a3b8; font-size:20px; cursor:pointer;">&times;</button>
-            </div>
-            <div id="cart-items" style="margin-bottom:15px;"></div>
-            <div style="border-top:1px solid #334155; padding-top:10px; margin-bottom:15px; display:flex; justify-content:space-between; font-weight:bold;">
-                <span>Итого:</span>
-                <span id="cart-total" style="color:#38bdf8;">0 ₽</span>
-            </div>
-            <button onclick="checkout()" style="background:#38bdf8; border:none; color:#0f172a; width:100%; padding:10px; border-radius:8px; font-weight:bold; cursor:pointer;">Оформить заказ</button>
-        </div>
-    </div>
-
-    <!-- Скрипты (в самом низу) -->
     <script>
-        // Переключение вкладок
-        function ST(cat) {
-            document.getElementById('cat-bs').style.display = 'none';
-            document.getElementById('cat-cr').style.display = 'none';
-            document.getElementById('cat-coc').style.display = 'none';
-            
-            document.getElementById('t-bs').classList.remove('on');
-            document.getElementById('t-cr').classList.remove('on');
-            document.getElementById('t-coc').classList.remove('on');
-            
-            document.getElementById('cat-' + cat).style.display = 'block';
-            document.getElementById('t-' + cat).classList.add('on');
-        }
-
-        // Логика корзины
-        let cart = JSON.parse(localStorage.getItem('kiyan_cart')) || [];
-function openCart() {
-            document.getElementById('cart-modal').style.display = 'flex';
-            renderCart();
-        }
-
-        function closeCart() {
-            document.getElementById('cart-modal').style.display = 'none';
-        }
-
-        function addToCart(name, price) {
-            let existing = cart.find(item => item.name === name);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ name: name, price: price, quantity: 1 });
-            }
-            saveAndRender();
-            alert('Товар добавлен в корзину!');
-        }
-
-        function changeQty(index, delta) {
-            cart[index].quantity += delta;
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
-            }
-            saveAndRender();
-        }
-
-        function saveAndRender() {
-            localStorage.setItem('kiyan_cart', JSON.stringify(cart));
-            renderCart();
-        }
-
-        function renderCart() {
-            let container = document.getElementById('cart-items');
-            let totalEl = document.getElementById('cart-total');
-            if(!container || !totalEl) return;
-            container.innerHTML = '';
-            
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="color:#94a3b8; text-align:center;">Корзина пуста</p>';
-                totalEl.innerText = '0 ₽';
-                return;
-            }
-
-            let total = 0;
-            cart.forEach((item, index) => {
-                let itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                
-                container.innerHTML += 
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; background:#0f172a; padding:8px; border-radius:8px;">
-                        <div>
-                            <div style="font-size:13px; font-weight:bold;">${item.name}</div>
-                            <div style="font-size:12px; color:#38bdf8;">${item.price} ₽ × ${item.quantity}</div>
-                        </div>
-                        <div style="display:flex; gap:5px; align-items:center;">
-                            <button onclick="changeQty(${index}, -1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">-</button>
-                            <span style="font-size:14px; width:20px; text-align:center;">${item.quantity}</span>
-                            <button onclick="changeQty(${index}, 1)" style="background:#334155; color:#fff; border:none; width:24px; height:24px; border-radius:4px; cursor:pointer;">+</button>
-                        </div>
-                    </div>
-                ;
-            });
-            totalEl.innerText = total + ' ₽';
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Корзина пуста!');
-                return;
-            }
-            alert('Переходим к оформлению заказа!');
-        }
-
-        // Автозапуск частиц и привязка кнопок
+        // Автоматическое создание летающих частиц
         window.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('particles');
             if(container) {
@@ -231,18 +118,21 @@ function openCart() {
                     container.appendChild(p);
                 }
             }
-document.querySelectorAll('.pc').forEach(card => {
-                let nameEl = card.querySelector('.pn');
-                let priceEl = card.querySelector('.pp');
-                let btn = card.querySelector('.pb');
-                if(nameEl && priceEl && btn) {
-                    let name = nameEl.innerText;
-                    let price = parseInt(priceEl.innerText.replace(/[^0-9]/g, '')) || 0;
-                    btn.onclick = () => addToCart(name, price);
-                }
-            });
-            renderCart();
         });
+
+        // Функция переключения вкладок
+        function ST(cat) {
+            document.getElementById('cat-bs').style.display = 'none';
+            document.getElementById('cat-cr').style.display = 'none';
+            document.getElementById('cat-coc').style.display = 'none';
+            
+            document.getElementById('t-bs').classList.remove('on');
+            document.getElementById('t-cr').classList.remove('on');
+            document.getElementById('t-coc').classList.remove('on');
+            
+            document.getElementById('cat-' + cat).style.display = 'block';
+            document.getElementById('t-' + cat).classList.add('on');
+        }
     </script>
 </body>
 </html>
